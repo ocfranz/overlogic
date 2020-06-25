@@ -36,4 +36,20 @@ npx adb shell input keyevent 82
 ```
 
 ## Project Structure
-Coming soon 
+
+```bash
+├── src
+│   ├── assets
+│   │  ├── fonts
+│   │  ├── images
+│   ├── components
+│   │  ├── Button
+│   │  ├── Link
+│   ├── navigations
+│   ├── screens
+│   │  ├── Login
+│   │  ├── Home
+│   ├── styles
+│   ├── services
+│   ├── utils
+```
