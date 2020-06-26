@@ -17,7 +17,7 @@ export PATH=$ANDROID_HOME/tools:$PATH
 ```
 ### Clone Repo
 ```bash
-Repo link
+git clone https://github.com/ocfranz/overlogic.git
 cd overlogic
 ```
 ### Install and setup dependencies
