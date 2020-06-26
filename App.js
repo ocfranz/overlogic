@@ -16,10 +16,14 @@ import {
 	StatusBar,
 } from 'react-native';
 
-import { ViroScene, ViroARScene,  ViroUtils,
-	ViroText} from 'react-viro';
+import { ViroScene, ViroARScene,  ViroUtils, ViroText} from 'react-viro';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import HomeScreen from './src/screens/Home';
 
-
+const Stack = createStackNavigator();
+const Tab = createBottomTabNavigator();
 const App = () => {
 	const isARSupportedOnDevice = ViroUtils.isARSupportedOnDevice;
 	const [ isARSupported, setARSupported] = useState(false);
@@ -36,16 +40,10 @@ const App = () => {
 	}
 
 	return (
-		<>
-			<StatusBar barStyle="dark-content" />
-			<SafeAreaView>
-				<Text>{isARSupported ? 'AR enabled' : 'Not enable AR'}</Text>
-				<ViroScene width={100}>
-					<ViroText text={'ss'}></ViroText>
-				</ViroScene>
-				<Text>Helsslo</Text>
-			</SafeAreaView>
-		</>
+		<Tab.Navigator>
+			<Tab.Screen name="Home" component={HomeScreen} />
+			<Tab.Screen name="Settings" component={LoginScreen} />
+		</Tab.Navigator>
 	);
 };
 
