@@ -11,7 +11,7 @@ const Login = ({navigation})=>{
     return(
         <SafeAreaView>
             <View>
-                <Text style={styles.instructions}>Screen : Login</Text>
+                <Text style={styles.title_blue}>Overlogic</Text>
                 <Button
                     title="Iniciar sesión"
                     onPress={() => navigation.navigate('App')}
@@ -26,12 +26,19 @@ const Login = ({navigation})=>{
 }
 
 const styles = StyleSheet.create({
-    instructions: {
-        fontFamily: "gilroyRegular",
-        fontSize: 20,
-        textAlign: "center",
+    title: {
+        fontFamily: "gilroy_bold",
+        fontSize: 30,
         color: "#333333",
-        marginBottom: 5
+       
+        
+    },
+    title_blue :{
+        color: "#567DF4",
+        fontSize: 30,
+        fontFamily: "gilroy_bold",
+        fontSize: 30,
+        textAlign: "center"
     }
   });
 export default Login;
