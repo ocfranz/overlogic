@@ -1,15 +1,37 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 
-import {View, Text } from 'react-native';
+import {View, Text , Button, StatusBar, SafeAreaView, StyleSheet} from 'react-native';
 
-const Login = ()=>{
+import LoginTitle from './styles';
+
+const Login = ({navigation})=>{
+    useEffect(()=>{
+       
+    }, [])
     return(
-        <View>
-
-            <Text>Screen : Login</Text>
-        </View>
-
+        <SafeAreaView>
+            <View>
+                <Text style={styles.instructions}>Screen : Login</Text>
+                <Button
+                    title="Iniciar sesión"
+                    onPress={() => navigation.navigate('App')}
+                />
+                <Button
+                    title="Registrate"
+                    onPress={() => navigation.navigate('Signup')}
+                />
+            </View>
+        </SafeAreaView>
     );
 }
 
+const styles = StyleSheet.create({
+    instructions: {
+        fontFamily: "gilroyRegular",
+        fontSize: 20,
+        textAlign: "center",
+        color: "#333333",
+        marginBottom: 5
+    }
+  });
 export default Login;
