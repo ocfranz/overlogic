@@ -132,6 +132,7 @@ android {
     defaultConfig {
         flavorDimensions "platform"
         applicationId "com.helloworld"
+        missingDimensionStrategy 'react-native-camera', 'general'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
