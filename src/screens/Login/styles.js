@@ -1,12 +1,22 @@
-import React from 'react'
-import styled from 'styled-components/native'
+import { StyleSheet } from 'react-native';
 
-const LoginView = styled.View`
-    background-color: papayawhip;
-    display : flex;
-    height: 100%;
-    padding: 30px;
-    display: flex;
-    align-items: center;
-`
-export default LoginView;
+const styles = StyleSheet.create({
+    login_wrapper: {
+        alignItems : 'center'
+    },
+    form :{
+        width : '100%',
+        paddingLeft : 30,
+        paddingRight : 30,
+        paddingTop : 34,
+        alignItems : 'center',
+    },
+    form_optional : {
+        fontSize : 17,
+        fontFamily : 'gilroy_regular', 
+        opacity : 0.8,
+        marginTop: 15
+    }
+  });
+
+  export default styles;

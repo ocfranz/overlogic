@@ -20,6 +20,10 @@
 		A024C484BF8F4ECF9EEB566B /* gilroy_heavy.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 51BF2E1FBB474E69A8F6957D /* gilroy_heavy.ttf */; };
 		B431229F563C403AA232E3ED /* gilroy_light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 4C99B8DF945C4DED9614CB5D /* gilroy_light.ttf */; };
 		3BEC24D4A10C458AB48ABE0E /* gilroy_regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = BC9566A2393C46C7AB6E83A8 /* gilroy_regular.ttf */; };
+		B3C5912D887244B3B7A56B58 /* onboarding_top.png in Resources */ = {isa = PBXBuildFile; fileRef = BA4E84A6C12F42009CDB998A /* onboarding_top.png */; };
+		027A6E3DAD09486BA9E30F69 /* logo_overlogic.png in Resources */ = {isa = PBXBuildFile; fileRef = 8F4F9899213B461095AB4A76 /* logo_overlogic.png */; };
+		8C0E617C65CA4551B8212064 /* logo_overlogic.svg in Resources */ = {isa = PBXBuildFile; fileRef = 44C0BDDE901B47BF903DFB16 /* logo_overlogic.svg */; };
+		C7D70B69743949378228EFE4 /* logo_overlogic_big.png in Resources */ = {isa = PBXBuildFile; fileRef = 0F23F58410CF4BFB89B3FFD0 /* logo_overlogic_big.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,6 +63,10 @@
 		51BF2E1FBB474E69A8F6957D /* gilroy_heavy.ttf */ = {isa = PBXFileReference; name = "gilroy_heavy.ttf"; path = "../src/assets/fonts/gilroy_heavy.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		4C99B8DF945C4DED9614CB5D /* gilroy_light.ttf */ = {isa = PBXFileReference; name = "gilroy_light.ttf"; path = "../src/assets/fonts/gilroy_light.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		BC9566A2393C46C7AB6E83A8 /* gilroy_regular.ttf */ = {isa = PBXFileReference; name = "gilroy_regular.ttf"; path = "../src/assets/fonts/gilroy_regular.ttf"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		BA4E84A6C12F42009CDB998A /* onboarding_top.png */ = {isa = PBXFileReference; name = "onboarding_top.png"; path = "../src/assets/images/onboarding_top.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		8F4F9899213B461095AB4A76 /* logo_overlogic.png */ = {isa = PBXFileReference; name = "logo_overlogic.png"; path = "../src/assets/images/logo_overlogic.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		44C0BDDE901B47BF903DFB16 /* logo_overlogic.svg */ = {isa = PBXFileReference; name = "logo_overlogic.svg"; path = "../src/assets/images/logo_overlogic.svg"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		0F23F58410CF4BFB89B3FFD0 /* logo_overlogic_big.png */ = {isa = PBXFileReference; name = "logo_overlogic_big.png"; path = "../src/assets/images/logo_overlogic_big.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -173,6 +181,10 @@
 				51BF2E1FBB474E69A8F6957D /* gilroy_heavy.ttf */,
 				4C99B8DF945C4DED9614CB5D /* gilroy_light.ttf */,
 				BC9566A2393C46C7AB6E83A8 /* gilroy_regular.ttf */,
+				BA4E84A6C12F42009CDB998A /* onboarding_top.png */,
+				8F4F9899213B461095AB4A76 /* logo_overlogic.png */,
+				44C0BDDE901B47BF903DFB16 /* logo_overlogic.svg */,
+				0F23F58410CF4BFB89B3FFD0 /* logo_overlogic_big.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -320,6 +332,10 @@
 				A024C484BF8F4ECF9EEB566B /* gilroy_heavy.ttf in Resources */,
 				B431229F563C403AA232E3ED /* gilroy_light.ttf in Resources */,
 				3BEC24D4A10C458AB48ABE0E /* gilroy_regular.ttf in Resources */,
+				B3C5912D887244B3B7A56B58 /* onboarding_top.png in Resources */,
+				027A6E3DAD09486BA9E30F69 /* logo_overlogic.png in Resources */,
+				8C0E617C65CA4551B8212064 /* logo_overlogic.svg in Resources */,
+				C7D70B69743949378228EFE4 /* logo_overlogic_big.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

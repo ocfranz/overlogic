@@ -25,6 +25,7 @@ import UserScreen from './src/screens/User';
 import FiltersScreen from './src/screens/Filters';
 import LoginScreen from './src/screens/Login';
 import SignupScreen from './src/screens/Signup';
+import OnboardingScreen from './src/screens/Onboarding';
 
 const Stack = createStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -40,11 +41,13 @@ const appBottomTabs = ()=>{
 }
 const initialRoues = ()=>{
 	return (
-		<Stack.Navigator screenOptions={{
+		<Stack.Navigator 
+			screenOptions={{
 				headerShown: false
-			}}
-			
+			}} 
+			initialRouteName = "Onboarding"
 			>
+			<Stack.Screen name="Onboarding" component={OnboardingScreen} />
 			<Stack.Screen name="Login" component={LoginScreen} />
 			<Stack.Screen name="Signup" component={SignupScreen} />
 			<Stack.Screen name="App" component={appBottomTabs} />
