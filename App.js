@@ -1,82 +1,150 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React, { Component } from 'react';
+import { StyleSheet, Text, View } from 'react-native';
+import { RNCamera } from 'react-native-camera';
+import { observer, inject } from 'mobx-react';
+import { Slider } from 'react-native-elements';
+import { Spinner, Button, Icon, Header, Left, Body, Title, Right } from 'native-base';
+import RNTextDetector from 'react-native-text-detector';
+import { Overlay } from 'react-native-elements';
+import colors from '../../assets/colors';
 
-import React, {useState, useEffect} from 'react';
-import {
-	SafeAreaView,
-	StyleSheet,
-	ScrollView,
-	View,
-	Text,
-	StatusBar,
-} from 'react-native';
+class Camera extends Component {
+  state = { zoomValue: 0, flashMode: RNCamera.Constants.FlashMode.off };
 
-import { ViroScene, ViroARScene,  ViroUtils, ViroText} from 'react-viro';
-import { NavigationContainer } from '@react-navigation/native';
-import { createStackNavigator } from '@react-navigation/stack';
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import HomeScreen from './src/screens/Home';
-import UserScreen from './src/screens/User';
-import FiltersScreen from './src/screens/Filters';
-import LoginScreen from './src/screens/Login';
-import SignupScreen from './src/screens/Signup';
-import OnboardingScreen from './src/screens/Onboarding';
+  static navigationOptions = {
+    header: null,
+  };
 
-const Stack = createStackNavigator();
-const Tab = createBottomTabNavigator();
+  render() {
+    const { memoStore } = this.props.store;
+    {
+      console.log('render method', memoStore.loader);
+    }
 
-const appBottomTabs = ()=>{
-	return (
-		<Tab.Navigator initialRouteName ={"Home"}>
-			<Tab.Screen name="User" component={UserScreen} />
-			<Tab.Screen name="Home" component={HomeScreen} />
-			<Tab.Screen name="Filters" component={FiltersScreen} />
-		</Tab.Navigator>
-	);
+    return (
+      <View style={styles.container}>
+        <Header style={{ backgroundColor: colors.primaryColor }} androidStatusBarColor={colors.secondaryColor}>
+          <Left>
+            <Button transparent onPress={() => this.props.navigation.goBack()}>
+              <Icon name="arrow-back" />
+            </Button>
+          </Left>
+          <Body>
+            <Title>FasReco</Title>
+          </Body>
+          <Right />
+        </Header>
+        <RNCamera
+          ref={ref => {
+            this.camera = ref;
+          }}
+          style={styles.preview}
+          type={RNCamera.Constants.Type.back}
+          flashMode={this.state.flashMode}
+          autoFocus={RNCamera.Constants.AutoFocus.on}
+          androidCameraPermissionOptions={{
+            title: 'Permission to use camera',
+            message: 'We need your permission to use your camera',
+            buttonPositive: 'Ok',
+            buttonNegative: 'Cancel',
+          }}
+          zoom={this.state.zoomValue}
+        >
+          {memoStore.loader == true ? (
+            <Overlay
+              isVisible={memoStore.loader}
+              overlayBackgroundColor="white"
+              width="75%"
+              height="25%"
+              onBackdropPress={() => memoStore.loaderFalse()}
+            >
+              <View>
+                <Spinner color={colors.primaryColor} />
+                <Text style={{ alignSelf: 'center', fontSize: 20, color: 'black' }}>Processing...</Text>
+              </View>
+            </Overlay>
+          ) : null}
+          <View style={{ flex: 0, flexDirection: 'row', justifyContent: 'center' }}>
+            <View style={{ flex: 1, alignItems: 'stretch', justifyContent: 'center' }}>
+              <Slider
+                minimumValue={0}
+                maximumValue={1}
+                step={0.1}
+                value={this.state.zoomValue}
+                onValueChange={zoomValue => this.setState({ zoomValue })}
+                thumbTintColor={colors.primaryColor}
+              />
+            </View>
+
+            <Icon type="Entypo" onPress={this.takePicture} style={styles.icon} name="flickr-with-circle" />
+
+            <Icon type="Entypo" onPress={this.flash} style={styles.icon} name="flash" />
+          </View>
+        </RNCamera>
+      </View>
+    );
+  }
+  flash = () => {
+    if (this.state.flashMode == RNCamera.Constants.FlashMode.off) {
+      this.setState({ flashMode: RNCamera.Constants.FlashMode.torch });
+    } else this.setState({ flashMode: RNCamera.Constants.FlashMode.off });
+  };
+  takePicture = async () => {
+    const { memoStore } = this.props.store;
+    try {
+      memoStore.loaderTrue();
+      console.log('try', memoStore.loader);
+      const options = {
+        quality: 0.8,
+        base64: true,
+        skipProcessing: true,
+      };
+      const { uri } = await this.camera.takePictureAsync(options);
+      const visionResp = await RNTextDetector.detectFromUri(uri);
+      this.props.store.memoStore.addItem(visionResp);
+      console.log('visionResp', visionResp);
+    } catch (e) {
+      console.warn(e);
+    }
+    memoStore.loaderFalse();
+    let id = memoStore.memoArray.length - 1;
+    memoStore.setEditId(parseInt(id));
+    this.props.navigation.navigate('MemoView', {
+      otherParam: id,
+    });
+    console.log('try outside', memoStore.loader);
+  };
 }
-const initialRoues = ()=>{
-	return (
-		<Stack.Navigator 
-			screenOptions={{
-				headerShown: false
-			}} 
-			initialRouteName = "Onboarding"
-			>
-			<Stack.Screen name="Onboarding" component={OnboardingScreen} />
-			<Stack.Screen name="Login" component={LoginScreen} />
-			<Stack.Screen name="Signup" component={SignupScreen} />
-			<Stack.Screen name="App" component={appBottomTabs} />
-		</Stack.Navigator>
-	);
-}
-const App = () => {
-	const isARSupportedOnDevice = ViroUtils.isARSupportedOnDevice;
-	const [ isARSupported, setARSupported] = useState(false);
-	const [ isSignedIn , setisSignedIn ] = useState(false);
-	
-	useEffect(()=>{
-		isARSupportedOnDevice(handleARNotSupported, handleARSupported)
-	}, [])
+export default inject('store')(observer(Camera));
 
-	const handleARNotSupported = ()=>{
-		setARSupported(false)
-	}
-	const handleARSupported = () => {
-		setARSupported(true)
-	}
-	return (
-		<NavigationContainer>
-			{
-				isSignedIn ? appBottomTabs(): initialRoues()
-			}
-		</NavigationContainer>
-	);
-};
-
-
-export default App;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    flexDirection: 'column',
+    backgroundColor: 'black',
+  },
+  preview: {
+    flex: 1,
+    flexDirection: 'column',
+    justifyContent: 'flex-end',
+    height: '100%',
+  },
+  icon: {
+    flex: 0,
+    color: 'white',
+    fontSize: 40,
+    padding: 15,
+    paddingHorizontal: 20,
+    alignSelf: 'center',
+    margin: 20,
+  },
+  spinnerStyle: {
+    flex: 0,
+    backgroundColor: '#fff',
+    justifyContent: 'center',
+    flexDirection: 'column',
+    height: '100%',
+    width: '100%',
+    alignSelf: 'flex-start',
+  },
+});

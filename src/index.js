@@ -6,7 +6,7 @@ import { AppBottomTabs, AuthRouter } from './navigations';
 
 const App = () => {
 	
-	const [ isSignedIn , setisSignedIn ] = useState(false);
+	const [ isSignedIn , setisSignedIn ] = useState(true);
 	
 	return (
 		<NavigationContainer>
