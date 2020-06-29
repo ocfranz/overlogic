@@ -10,6 +10,7 @@ const Home = ()=>{
 	const [ textProcessed, setTextProcessed] = useState('Texto sin procesar');
 	const [ collectionText, setCollectionText ] = useState([]);
 	const [ showMarkers, setShowMarkers ] = useState(false);
+	const [ scanningText, setEscanningText ] = useState(true);
 
     const isARSupportedOnDevice = ViroUtils.isARSupportedOnDevice;
 	const [ isARSupported, setARSupported] = useState(false);
@@ -25,7 +26,6 @@ const Home = ()=>{
 		setARSupported(true)
 	}
 	const handleOnProcessImg = async (camera)=>{
-		
     	try {
 			const options = {
 				quality: 0.8,
@@ -45,7 +45,6 @@ const Home = ()=>{
 			setCollectionText(collectionWords);
 			setTextProcessed(text);
 			setShowMarkers(true);
-
     	} catch (e) {
       		console.warn(e);
     	}
@@ -86,7 +85,7 @@ const Home = ()=>{
 			type={RNCamera.Constants.Type.back}
 			flashMode={RNCamera.Constants.FlashMode.on}
 			androidCameraPermissionOptions={{
-				title: 'Permiso para usar carmar',
+				title: 'Necesitamos tu acceder a tu cámara',
 				message: 'Activa tu camara',
 				buttonPositive: 'Ok',
 				buttonNegative: 'Cancelar',
@@ -94,7 +93,7 @@ const Home = ()=>{
 			onTextRecognized={(event)=>handleOnTextRecognized(event)}
 			>
 			{({ camera, status }) => {
-				if (status !== 'READY') return <Text>nOT RESSADY</Text>;
+				if (status !== 'READY') return <Text>Camera not ready</Text>;
 				return (
 				<View style={{ flex: 0, width:'100%', flexDirection: 'row', justifyContent: 'center',}}>
 					{

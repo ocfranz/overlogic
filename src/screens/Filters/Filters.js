@@ -1,10 +1,11 @@
 import React from 'react';
 import {View, Text } from 'react-native';
+import Header from '../../components/Header';
 
-const Filters = ()=>{
+const Filters = ({navigation})=>{
     return(
         <View style={{height: '100%', borderBottomColor: '#000000', borderBottomWidth: 2}}>
-            <Text>Filters</Text>
+          <Header route='Filters' title="Filtros" handleOnBack={()=>navigation.goBack()}/>
         </View>
     );
 }

@@ -1,9 +1,10 @@
 import React from 'react';
 import {View, Text } from 'react-native';
-
-const User = ()=>{
+import Header from '../../components/Header';
+const User = ({navigation})=>{
     return(
         <View>
+            <Header route='User' title='' handleOnBack={()=>navigation.goBack()}/>
             <Text>User profile</Text>
         </View>
     );

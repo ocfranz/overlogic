@@ -2,9 +2,9 @@ import React from 'react';
 import { Image, TouchableHighlight } from 'react-native';
 import styles from './styles';
 
-const RoundedIcon = ({icon,  accessibilityLabel})=>{
+const RoundedIcon = ({icon, handleOnPress , accessibilityLabel})=>{
     return (
-        <TouchableHighlight  accessibilityLabel={accessibilityLabel}>
+        <TouchableHighlight style={styles.rounded_icon} onPress={handleOnPress}>
             <Image source={icon} style={styles.icon_image}></Image>
         </TouchableHighlight> 
     );

@@ -2,18 +2,19 @@ import { StyleSheet } from 'react-native';
 import {colors} from '../../styles/colors';
 const styles = StyleSheet.create({
     rounded_icon : {
-        borderRadius : 100,
-        height: 100,
-        width : 100,
-        
+        borderRadius : 50,
+        height: 50,
+        width : 50,
+        alignItems: 'center',
+        elevation : -1,
         backgroundColor : colors.dark,
         justifyContent : 'center',
         alignContent : 'center'
         
     },  
     icon_image : {
-        width : 30,
-        height: 30
+        width : 25,
+        height: 25
     }
     
   });

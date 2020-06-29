@@ -28,6 +28,7 @@
 		7C574735376049EEAB4AFA0E /* load_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 49C9ECD3E71E4FCAA16166A2 /* load_icon.png */; };
 		67F67C85CF624B77B4E4FC19 /* play_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = 6D4D4F5DA9174ADDAF6AC641 /* play_icon.png */; };
 		7FCFAE71DC8947C19402D12B /* user_icon.png in Resources */ = {isa = PBXBuildFile; fileRef = E070B3A5687D46228C7D3041 /* user_icon.png */; };
+		BFEDEA266DE44E7F9F55B291 /* arrow_back.png in Resources */ = {isa = PBXBuildFile; fileRef = F76859545881438EBAED4A62 /* arrow_back.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -75,6 +76,7 @@
 		49C9ECD3E71E4FCAA16166A2 /* load_icon.png */ = {isa = PBXFileReference; name = "load_icon.png"; path = "../src/assets/images/load_icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		6D4D4F5DA9174ADDAF6AC641 /* play_icon.png */ = {isa = PBXFileReference; name = "play_icon.png"; path = "../src/assets/images/play_icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 		E070B3A5687D46228C7D3041 /* user_icon.png */ = {isa = PBXFileReference; name = "user_icon.png"; path = "../src/assets/images/user_icon.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
+		F76859545881438EBAED4A62 /* arrow_back.png */ = {isa = PBXFileReference; name = "arrow_back.png"; path = "../src/assets/images/arrow_back.png"; sourceTree = "<group>"; fileEncoding = undefined; lastKnownFileType = unknown; explicitFileType = undefined; includeInIndex = 0; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -197,6 +199,7 @@
 				49C9ECD3E71E4FCAA16166A2 /* load_icon.png */,
 				6D4D4F5DA9174ADDAF6AC641 /* play_icon.png */,
 				E070B3A5687D46228C7D3041 /* user_icon.png */,
+				F76859545881438EBAED4A62 /* arrow_back.png */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -352,6 +355,7 @@
 				7C574735376049EEAB4AFA0E /* load_icon.png in Resources */,
 				67F67C85CF624B77B4E4FC19 /* play_icon.png in Resources */,
 				7FCFAE71DC8947C19402D12B /* user_icon.png in Resources */,
+				BFEDEA266DE44E7F9F55B291 /* arrow_back.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
