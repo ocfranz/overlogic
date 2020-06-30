@@ -1,5 +1,5 @@
 apply plugin: "com.android.application"
-
+apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 import com.android.build.OutputFile
 
 /**
@@ -268,4 +268,3 @@ apply plugin: 'com.google.gms.google-services'
 // Work around for onesignal-gradle-plugin compatibility
 com.google.gms.googleservices.GoogleServicesPlugin.config.disableVersionCheck = true
 
-apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"

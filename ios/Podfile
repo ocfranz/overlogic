@@ -80,6 +80,7 @@ target 'overlogic' do
 
   pod 'RNTextDetector', :path => '../node_modules/react-native-text-detector'
 
+
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
   target 'overlogicTests' do
