@@ -10,6 +10,7 @@ const styles = StyleSheet.create({
         paddingRight : 30,
         paddingTop : 34,
         alignItems : 'center',
+        paddingBottom : 50
     },
     form_optional : {
         fontSize : 17,

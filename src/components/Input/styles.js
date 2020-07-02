@@ -8,7 +8,10 @@ const styles = StyleSheet.create({
         backgroundColor : colors.blue_ligth,
         fontFamily : 'gilroy_regular', 
         fontSize : 17,
-        marginBottom: 20
+        marginBottom: 20,
+        borderRadius : 5,
+        borderWidth : 1,
+        borderColor: "#CCCCCC"
     }    
 });
 
