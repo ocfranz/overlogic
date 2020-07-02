@@ -11,8 +11,9 @@ const styles = StyleSheet.create({
         marginBottom: 20,
         borderRadius : 5,
         borderWidth : 1,
-        borderColor: "#CCCCCC"
+        borderColor: "#CCCCCC",
+       
     }    
 });
 
-  export default styles;
+export default styles;

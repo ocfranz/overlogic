@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, Text, ScrollView, TextInput } from 'react-native';
+import {View, Text, ScrollView, TextInput, AsyncStorage, TouchableOpacity } from 'react-native';
 import { colors } from '../../styles/colors';
 import Header from '../../components/Header';
 import Avatar from '../../components/Avatar';
@@ -11,8 +11,16 @@ import Icon from "react-native-vector-icons/Feather";
 const User = ({navigation})=>{
     const [ userInfo, setUserInfo ] = useState({ name : 'Julia Doe', leveL : '1', age : '18', grade : 'primero'});
     const [ enableEdit , setEnableEdit ]  = useState(false);
-    const handleLogoOut = ()=>{
-        console.log('log out');
+    const handleLogoOut = async ()=>{
+        try {
+            const user = await AsyncStorage.getItem('user');
+            if(user != null){
+                await AsyncStorage.clear();
+                navigation.navigate('Login');
+            }
+        } catch (error) {
+            console.log('Error on getting user');
+        }
     }
     const handleOnEdit = () =>{
         setEnableEdit(!enableEdit);
@@ -71,13 +79,12 @@ const User = ({navigation})=>{
                     <Accordion title="Privacidad" type="privacy"/>
                     <Accordion title="Ayuda" type="help"/>
                     <Accordion title="Acerca de" type="about"/>
-                    <View style={{flexDirection: 'row',
+                    <TouchableOpacity activeOpacity={1} style={{flexDirection: 'row',
                                
                                 height:56,
                                 paddingLeft:21,
                                 paddingRight:21,
                                 alignItems:'center',
-                            
                                 opacity : 1,}}
                     onPress={()=>handleLogoOut()}
                     >
@@ -88,7 +95,7 @@ const User = ({navigation})=>{
                                     fontFamily : 'gilroy_regular',}}>
                                         Cerrar sesión
                         </Text>
-                    </View>
+                    </TouchableOpacity>
                 </View>
             </View>
         </ScrollView>

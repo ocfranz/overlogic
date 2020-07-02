@@ -2,19 +2,18 @@ import React from 'react';
 import { TextInput } from 'react-native';
 
 import styles from './styles';
-const Input = ({ value, handleOnChange, placeholder}) => {
+const Input = ({ value, handleOnChange, placeholder, type}) => {
   return (
     <TextInput
         style={styles.input_ligth}
-        onChangeText={() => handleOnChange}
+        onChangeText={handleOnChange}
         value={value}
         placeholder={placeholder}
+        spellCheck={false}
+        autoCorrect={false}
+        keyboardType="visible-password"
     />
   );
-}
-
-Input.defaultProps = {
-    value : ''
 }
 
 export default Input;
