@@ -78,6 +78,11 @@ target 'overlogic' do
   pod 'Folly', :podspec => '../node_modules/react-native/third-party-podspecs/Folly.podspec'
 
 
+  pod 'RNTextDetector', :path => '../node_modules/react-native-text-detector'
+
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
   target 'overlogicTests' do
     inherit! :complete
     # Pods for testing

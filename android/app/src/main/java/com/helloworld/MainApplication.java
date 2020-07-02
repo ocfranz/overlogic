@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import com.facebook.react.PackageList;
 import com.facebook.react.ReactApplication;
+import com.oblador.vectoricons.VectorIconsPackage;
+import com.fetchsky.RNTextDetector.RNTextDetectorPackage;
 import com.facebook.react.ReactInstanceManager;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -18,7 +20,6 @@ import java.util.List;
 //viro media imports 
 import com.viromedia.bridge.ReactViroPackage;
 import com.facebook.soloader.SoLoader;
-
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost =
@@ -37,9 +38,9 @@ public class MainApplication extends Application implements ReactApplication {
 
           //Adding lottie package
           //packages.add( new LottiePackage());
-          //Viro packages 
+          //Viro packages
+         
           packages.add(new ReactViroPackage(ReactViroPackage.ViroPlatform.valueOf(BuildConfig.VR_PLATFORM)));
-          
           return packages;
         }
 
