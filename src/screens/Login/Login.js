@@ -32,7 +32,7 @@ const Login = ({navigation})=>{
                 try {
                     const user = { auth : true, id : data.id};
                     await AsyncStorage.setItem('user' , JSON.stringify(user));
-                    navigation.navigate('App');
+                    navigation.navigate('App', {id : user.id});
                 } catch (e) {
                     console.log('Failed to fetch the data from storage');
                 }

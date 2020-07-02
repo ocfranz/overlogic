@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { AsyncStorage} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
-
+import {YellowBox} from 'react-native';
 import { AppBottomTabs, AuthRouter } from './navigations';
 
 const App = () => {
 	const [ isSignedIn , setisSignedIn ] = useState(false);
-	
+	YellowBox.ignoreWarnings(['Warning: ReactNative.createElement']);
 	useEffect(()=>{
 		async function searchUser(){
 			try {

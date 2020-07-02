@@ -28,7 +28,7 @@ npm install
 #### Android
 1. To build, install and launch the android app, from the root of the project 
 ```bash
-npx react-native run-android --variant=gvrDebug --no-jetifier
+npx react-native run-android --variant=gvrDebug
 ```
 2. To enable live reload, run and select Enable Live Reload on android app
 ```bash

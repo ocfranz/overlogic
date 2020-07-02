@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef} from 'react';
 
-import {View, Text, Button } from 'react-native';
+import {View, Text, Button, Alert } from 'react-native';
 import { ViroScene, ViroARScene,  ViroUtils, ViroText} from 'react-viro';
 import { RNCamera } from 'react-native-camera'
 import RNTextDetector from 'react-native-text-detector';
@@ -10,7 +10,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 import processTextValue from '../../utils/processTextValue';
 
-const Home = ({navigation})=>{
+const Home = ({ navigation})=>{
 	const camera = useRef();
 	const [ textProcessed, setTextProcessed] = useState('Texto sin procesar');
 	const [ collectionText, setCollectionText ] = useState([]);
@@ -21,7 +21,11 @@ const Home = ({navigation})=>{
 	const [ isARSupported, setARSupported] = useState(false);
  	
 	useEffect(()=>{
+		
 		isARSupportedOnDevice(handleARNotSupported, handleARSupported)
+		if(!isARSupported){
+			Alert.alert('Tu dispositivo no soporta AR')
+		}
 	}, [])
 
 	const handleARNotSupported = ()=>{
@@ -71,21 +75,21 @@ const Home = ({navigation})=>{
 		let collectionWords = [];
 		event.textBlocks.map((item, inde)=>{
 			// Item.value, item.bound.size, item.bound.origin
-			//if(processTextValue(item.value)){
-				console.log(item.value)
+			if(processTextValue(item.value)){
 				collectionWords.push({'bounding': { 
 					'top': item.bounds.origin.y,
 					'left':item.bounds.origin.x,
 					'width': item.bounds.size.width,
 					'height': item.bounds.size.height,
-					'value': item.value
-				 }})
-			//}
+					
+				 }, 'value': item.value})
+			}
 		});
 
 		setCollectionText(collectionWords);
 		setShowMarkers(true);
 	}
+	
 
     return(
         <View>
@@ -110,7 +114,7 @@ const Home = ({navigation})=>{
 					<Text style={{fontSize: 16, fontFamily: 'gilroy_regular', color: colors.yellow_overlogic}}>
 						{ collectionText.length == 0 ?`Buscando...` : `Formulas: ${collectionText.length}`}
 					</Text>
-					<TouchableOpacity activeOpacity={1} style={{backgroundColor: colors.blue, padding:10, borderRadius: 10}} onPress={()=>navigation.navigate('Upload')}>
+					<TouchableOpacity activeOpacity={1} style={{backgroundColor: colors.blue, padding:10, borderRadius: 10}} >
 						<Text style={{color: colors.white, fontFamily: 'gilroy_regular'}}>Ver por foto</Text>
 					</TouchableOpacity>
 				</View>

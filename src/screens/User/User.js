@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {View, Text, ScrollView, TextInput, AsyncStorage, TouchableOpacity } from 'react-native';
 
 import { colors } from '../../styles/colors';
@@ -9,10 +9,48 @@ import styles from './styles';
 import Accordion from '../../components/Accordion';
 import Icon from "react-native-vector-icons/Feather";
 import Button from '../../components/Button';
+import BASE_URL from '../../variables/API_ROUTES';
+import Axios from 'axios';
 
-const User = ({navigation, logout})=>{
+const User = ({navigation})=>{
     const [ userInfo, setUserInfo ] = useState({ name : 'Julia Doe', leveL : '1', age : '18', grade : 'primero'});
+    const [ name, setName ] = useState('');
     const [ enableEdit , setEnableEdit ]  = useState(false);
+
+    useEffect(()=>{
+        async function searchUser(){
+			try {
+				const user = await AsyncStorage.getItem('user');
+				if(user != null){
+                    const userId = JSON.parse(user).id;
+                    console.log('ID',userId, user)
+                    let config = {
+                        method: 'get',
+                        url: `${BASE_URL}users/info/${userId}`,
+                        headers: { 
+                            'Content-Type': 'application/json'
+                        },
+                    };
+                
+                    Axios(config)
+                    .then( (response) => {
+                        let data = JSON.parse(JSON.stringify(response.data));
+                        console.log(data)
+                        if(data.userExists){
+                            setName(data.name);
+                        }
+                    })
+                    .catch( (error) => {
+                        console.log('errossr')
+                    });
+				}
+			} catch (error) {
+				console.log('Error on getting user');
+			}
+		}
+		searchUser();
+    }, [])
+
     const handleLogoOut = async ()=>{
         try {
             await AsyncStorage.clear();
@@ -34,7 +72,7 @@ const User = ({navigation, logout})=>{
                 <View style={styles.user_info}>
                     <Avatar />
                     {
-                        !enableEdit ? <Text style={styles.user_name}>{userInfo.name}</Text>
+                        !enableEdit ? <Text style={styles.user_name}>{name}</Text>
                         : <TextInput 
                         name="user_name"
                         value={userInfo.name}

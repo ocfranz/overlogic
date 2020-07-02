@@ -1,8 +1,14 @@
 const processTextValue = (value) =>{
-    if(value== "teorema de pitagoras"){
-        return true;
+    switch(value){
+        case 'algebra' :
+            return true;
+        case 'teorema de pitagoras':
+            return true;
+        case 'debug' :
+            return true;
+        default:
+            return false;
     }
-    return false;
 }
 
 export default processTextValue;

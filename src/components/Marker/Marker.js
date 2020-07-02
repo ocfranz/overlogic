@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { colors } from '../../styles/colors';
 
-const Marker = ({ top, left, width, height, value}) =>{
+const Marker = ({ top, left, width, height, value, handleOnClick}) =>{
     return(
         <>
        <View style={{ 
@@ -15,8 +15,8 @@ const Marker = ({ top, left, width, height, value}) =>{
             width: width, 
             height: height}}
         >
-        </View>
-        <Text style={{position: 'absolute', left: 100, top: 200, fontFamily: 'gilroy_bold', color: colors.yellow_overlogic, fontSize: 18}}>{value}</Text>
+            <Text style={{ fontFamily: 'gilroy_regular', color: colors.yellow_overlogic, fontSize: 15}}>{value}</Text>
+            </View>
         </>
     )
 }
