@@ -1,7 +1,7 @@
 import React, { Component, useState } from 'react';
 
 import {View, Text ,  StatusBar,Image,  SafeAreaView, ScrollView, 
-        StyleSheet, Modal, Alert, TouchableHighlight, CheckBox} from 'react-native';
+        StyleSheet, Modal, Alert, TouchableHighlight, CheckBox, AsyncStorage} from 'react-native';
 import OnboardingImage from '../../assets/images/onboarding_top.png';
 import styles from './styles';
 import Title from '../../components/Title';
@@ -15,44 +15,58 @@ import validateUserInfo from '../../utils/validateUserInfo';
 import signupUser from '../../services/signupUser';
 
 const SignUp = ({navigation})=>{
-    const [userInfo, setUserInfo ] =  useState({ name : '', username : ' ', password : '', password_confirm : ''}); 
+    const [ name, setName ] = useState('');
+    const [ username, setUsername ] = useState('');
+    const [ password, setPassword ] = useState('');
+    const [ passwordConfirm, setPasswordConfirm ] = useState('')
     const [modalVisible, setModalVisible, setSelection, isSelected] = useState(false);
 
     const handleInputChange = (text, name)=>{
         switch(name){
             case 'name':
-                setUserInfo({ name : text, ...userInfo});
+                setName(text);
                 break;
             case 'username':
-                setUserInfo({ username : text, ...userInfo});
+                setUsername(text);
                 break;
             case 'password':
-                setUserInfo({ password : text, ...userInfo});
+                setPassword(text);
                 break;
             case 'password-confirm':
-                setUserInfo({ password_confirm : text, ...userInfo});
+                setPasswordConfirm(text);
                 break;
             default :
                 throw new Error('Error type') 
-
         }
     }
     const signUpUser = ()=>{
+        const userInfo = { name : name, username : username, password : password, password_confirm : passwordConfirm};
         let validation = validateUserInfo(userInfo);
 
         if(validation.status){
-            let authObj = signupUser(
-                {username : userInfo.username, 
-                email : '', 
-                password : userInfo.password,
-                name : userInfo.name });
-            if(authObj.auth){
-                console.log('registrado')
-            }else{
-                console.log(authObj.msg)
-            }
+            delete userInfo.password_confirm;
+            userInfo.email = `${username}@overlogic.com`;
+            signupUser(userInfo, handleCallBack);
         }else{
-            console.log(validation.msg);
+            Alert.alert(validation.msg);
+        }
+    }
+    const handleCallBack = async (data)=>{
+        console.log(data)
+        if(data.mailExists || data.userExists){
+            Alert.alert('Este usuario ya esta registrado, intente con otro');
+        }else{
+            if(data.id != undefined){
+                try {
+                    const user = { auth : true, id : data.id};
+                    await AsyncStorage.setItem('user' , JSON.stringify(user));
+                    navigation.navigate('App');
+                } catch (e) {
+                    console.log('Failed to fetch the data from storage');
+                }
+            }else{
+                Alert.alert('El usuario no fue registrado');
+            }
         }
     }
 

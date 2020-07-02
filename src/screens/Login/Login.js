@@ -31,15 +31,18 @@ const Login = ({navigation})=>{
             if(data.auth){
                 try {
                     const user = { auth : true, id : data.id};
-                    await AsyncStorage.setItem('user' , user);
+                    await AsyncStorage.setItem('user' , JSON.stringify(user));
+                    navigation.navigate('App');
                 } catch (e) {
                     console.log('Failed to fetch the data from storage');
                 }
-                navigation.navigate('App');
+                
             }else{
                 Alert.alert('Contraseña incorrecta');
             }
         }else{
+            setUsername('');
+            setPassword('');
             Alert.alert('Usario no registrado');
         }
     }

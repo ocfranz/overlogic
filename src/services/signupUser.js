@@ -1,16 +1,24 @@
 import Axios from 'axios';
-import API_ROUTE_PATH from '../variables/API_ROUTES';
-const signupUser =(body) =>{
-    Axios.post(`${API_ROUTE_PATH}/users/signup`, body)
-    .then(function (response) {
-        if(response.hasOwnProperty('id')){
-            return ({id : response.id, auth : true});
-        }else{
-            return ({msg : response.message,auth : false});
-        }
+import BASE_URL from '../variables/API_ROUTES';
+const signupUser =(body, handleCallBack) =>{
+    console.log(body)
+    let data = JSON.stringify(body);
+    let config = {
+        method: 'post',
+        url: `${BASE_URL}users/signup`,
+        headers: { 
+            'Content-Type': 'application/json'
+        },
+        data : data
+    };
+
+    Axios(config)
+    .then( (response) => {
+        let data = JSON.parse(JSON.stringify(response.data));
+        handleCallBack(data);
     })
-    .catch(function (error) {
-        return error;
+    .catch( (error) => {
+        handleCallBack({ auth :false, msg : 'Usuario no registrado', err : true});
     });
 }
 
