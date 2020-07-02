@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {View, Text, ScrollView, TextInput } from 'react-native';
+import {View, Text, ScrollView, TextInput} from 'react-native';
 import { colors } from '../../styles/colors';
 import Header from '../../components/Header';
 import Avatar from '../../components/Avatar';
@@ -7,6 +7,7 @@ import Tag from '../../components/Tag';
 import styles from './styles';
 import Accordion from '../../components/Accordion';
 import Icon from "react-native-vector-icons/Feather";
+import Button from '../../components/Button';
 
 const User = ({navigation})=>{
     const [ userInfo, setUserInfo ] = useState({ name : 'Julia Doe', leveL : '1', age : '18', grade : 'primero'});
