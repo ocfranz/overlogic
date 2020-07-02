@@ -31,7 +31,10 @@ const styles = StyleSheet.create({
     },
     card_wrapper_action :{
         width: '20%',
-        justifyContent : 'center'
+        justifyContent : 'center',
+        alignItems : 'flex-end',
+        paddingRight: 20
+
     },
     card_title:{
         fontSize: 16,

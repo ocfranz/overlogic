@@ -1,9 +1,10 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Text } from 'react-native';
 import { colors } from '../../styles/colors';
 
-const Marker = ({ top, left, width, height}) =>{
+const Marker = ({ top, left, width, height, value}) =>{
     return(
+        <>
        <View style={{ 
             borderWidth : 2,
             backgroundColor: 'tranparent', 
@@ -15,6 +16,8 @@ const Marker = ({ top, left, width, height}) =>{
             height: height}}
         >
         </View>
+        <Text style={{position: 'absolute', left: 100, top: 200, fontFamily: 'gilroy_bold', color: colors.yellow_overlogic, fontSize: 18}}>{value}</Text>
+        </>
     )
 }
 

@@ -1,31 +1,95 @@
-import React from 'react';
-import {View, Text, ScrollView } from 'react-native';
+import React, { useState } from 'react';
+import {View, Text, ScrollView, TextInput } from 'react-native';
+import { colors } from '../../styles/colors';
 import Header from '../../components/Header';
 import Avatar from '../../components/Avatar';
 import Tag from '../../components/Tag';
 import styles from './styles';
+import Accordion from '../../components/Accordion';
+import Icon from "react-native-vector-icons/Feather";
+
 const User = ({navigation})=>{
+    const [ userInfo, setUserInfo ] = useState({ name : 'Julia Doe', leveL : '1', age : '18', grade : 'primero'});
+    const [ enableEdit , setEnableEdit ]  = useState(false);
+    const handleLogoOut = ()=>{
+        console.log('log out');
+    }
+    const handleOnEdit = () =>{
+        setEnableEdit(!enableEdit);
+    }
+    const handleOnTextInputChange = (event) =>{
+        console.log(event.target)
+    }
     return(
-        <ScrollView>
+        <ScrollView style={{backgroundColor : colors.white}} >
             <View >
-                <Header route='User' title='' handleOnBack={()=>navigation.goBack()}/>
+                <Header route='User' title='' handleOnBack={()=>navigation.goBack()} handleOnEdit={()=>handleOnEdit()} edit={enableEdit}/>
                 <View style={styles.user_info}>
                     <Avatar />
-                    <Text style={styles.user_name}> Julia Doe</Text>
-                    <Tag />
+                    {
+                        !enableEdit ? <Text style={styles.user_name}>{userInfo.name}</Text>
+                        : <TextInput 
+                        name="user_name"
+                        value={userInfo.name}
+                        onChange={event=>handleOnTextInputChange(event)}
+                        style={{fontFamily: 'gilroy_bold', fontSize: 20, backgroundColor: '#ffffff'}}
+                        />  
+                    }
+                    <Tag level={userInfo.level}/>
                     <View style={styles.user_details}>
                         <View style={styles.user_detail_content}>
-                            <Text style={styles.user_detail_info}>18</Text>
+                            
+                            {
+                                enableEdit 
+                                ? <TextInput 
+                                    name="user_age"
+                                    value={userInfo.age}
+                                    onChange={event=>handleOnTextInputChange(event)}
+                                    style={{fontFamily: 'gilroy_bold', fontSize: 20, backgroundColor: '#ffffff'}}
+                                    /> 
+                                : <Text style={styles.user_detail_info}>{userInfo.age}</Text>
+                            }
                             <Text style={styles.user_detail_label}>Años</Text>
                         </View>
                         <View style={styles.user_detail_content}>
-                            <Text style={styles.user_detail_info}>Primer</Text>
+                        {
+                                enableEdit 
+                                ? <TextInput 
+                                    name="user_grade"
+                                    value={userInfo.grade} 
+                                    style={{fontFamily: 'gilroy_bold', fontSize: 20}}
+                                    onChange={event=>handleOnTextInputChange(event)}
+                                    /> 
+                                : <Text style={styles.user_detail_info}>{userInfo.grade}</Text>
+                            }
                             <Text style={styles.user_detail_label}>Grado</Text>
                         </View>
                     </View>
                 </View>
-                
-                
+                <View style={{width : '100%',}}>
+                    <Accordion title="Configuraciones" type="settings"/>
+                    <Accordion title="Privacidad" type="privacy"/>
+                    <Accordion title="Ayuda" type="help"/>
+                    <Accordion title="Acerca de" type="about"/>
+                    <View style={{flexDirection: 'row',
+                               
+                                height:56,
+                                paddingLeft:21,
+                                paddingRight:21,
+                                alignItems:'center',
+                            
+                                opacity : 1,}}
+                    onPress={()=>handleLogoOut()}
+                    >
+                        <Icon name="log-out" size={20} color={colors.blue}></Icon>
+                        <Text style={{fontSize: 16,
+                                    color: colors.blue,
+                                    marginLeft: 10,
+                                    fontFamily : 'gilroy_regular',}}>
+                                        Cerrar sesión
+                        </Text>
+                    </View>
+                </View>
             </View>
         </ScrollView>
     );

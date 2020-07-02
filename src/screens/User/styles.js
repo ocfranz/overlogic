@@ -16,7 +16,8 @@ const styles = StyleSheet.create({
     user_details :{
         width: '70%',
         flexDirection: 'row',
-        marginTop: 20
+        marginTop: 20,
+        marginBottom : 20
     },
     user_detail_content :{
         width: '50%', alignItems: "center"

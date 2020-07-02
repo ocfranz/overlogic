@@ -5,7 +5,12 @@ import { ViroScene, ViroARScene,  ViroUtils, ViroText} from 'react-viro';
 import { RNCamera } from 'react-native-camera'
 import RNTextDetector from 'react-native-text-detector';
 import Marker from '../../components/Marker';
-const Home = ()=>{
+import { colors } from '../../styles/colors';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
+import processTextValue from '../../utils/processTextValue';
+
+const Home = ({navigation})=>{
 	const camera = useRef();
 	const [ textProcessed, setTextProcessed] = useState('Texto sin procesar');
 	const [ collectionText, setCollectionText ] = useState([]);
@@ -57,6 +62,7 @@ const Home = ()=>{
 				left={t.bounding.left} 
 				width={t.bounding.width} 
 				height={t.bounding.height}
+				value={t.value}
 				/>)
 		});
 		return markerTemplate;
@@ -65,12 +71,16 @@ const Home = ()=>{
 		let collectionWords = [];
 		event.textBlocks.map((item, inde)=>{
 			// Item.value, item.bound.size, item.bound.origin
-			collectionWords.push({'bounding': { 
-									'top': item.bounds.origin.y,
-									'left':item.bounds.origin.x,
-									'width': item.bounds.size.width,
-									'height': item.bounds.size.height
-								 }})
+			if(processTextValue(item.value)){
+				console.log(item.value)
+				collectionWords.push({'bounding': { 
+					'top': item.bounds.origin.y,
+					'left':item.bounds.origin.x,
+					'width': item.bounds.size.width,
+					'height': item.bounds.size.height,
+					'value': item.value
+				 }})
+			}
 		});
 
 		setCollectionText(collectionWords);
@@ -95,11 +105,21 @@ const Home = ()=>{
 			{({ camera, status }) => {
 				if (status !== 'READY') return <Text>Camera not ready</Text>;
 				return (
+				<>
+				<View style={{ position: 'absolute', height : 50, paddingHorizontal: 21, paddingVertical: 15, width: '100%', alignItems: 'center',flexDirection: 'row', justifyContent: 'space-between', marginTop: 10}}>
+					<Text style={{fontSize: 16, fontFamily: 'gilroy_regular', color: colors.yellow_overlogic}}>
+						{ collectionText.length == 0 ?`Buscando...` : `Formulas: ${collectionText.length}`}
+					</Text>
+					<TouchableOpacity activeOpacity={1} style={{backgroundColor: colors.blue, padding:10, borderRadius: 10}} onPress={()=>navigation.navigate('Upload')}>
+						<Text style={{color: colors.white, fontFamily: 'gilroy_regular'}}>Ver por foto</Text>
+					</TouchableOpacity>
+				</View>
 				<View style={{ flex: 0, width:'100%', flexDirection: 'row', justifyContent: 'center',}}>
 					{
 						showMarkers && drawMarkers(collectionText)
 					}
 				</View>
+				</>
 				);
 			}}
         </RNCamera>

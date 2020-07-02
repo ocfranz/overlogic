@@ -1,14 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import { Icon } from 'react-native';
+import { TouchableOpacity } from 'react-native';
 import { createBottomTabNavigator  } from '@react-navigation/bottom-tabs';
+import { colors } from '../styles/colors';
 import UserScreen from '../screens//User';
 import FiltersScreen from '../screens/Filters';
 import RoundedIcon from '../components/RoundedIcon';
-import ScanningIcon from '../assets/images/load_icon.png';
-import FiltersIcon from '../assets/images/filters_icon.png';
-import UserIcon from '../assets/images/user_icon.png';
-import PlayIcon from '../assets/images/play_icon.png';
-
+import Icon from "react-native-vector-icons/Feather";     
 import homeRoute from './home-navigator';
 const Tab = createBottomTabNavigator();
 
@@ -28,6 +25,7 @@ const appBottomTabs = ()=>{
 					borderTopWidth: 0,
 					elevation: 0,
 				 },
+				 showLabel: false
 			}}>
 			<Tab.Screen 
 				name="User" 
@@ -35,7 +33,8 @@ const appBottomTabs = ()=>{
 				options={{
 					tabBarLabel: 'User',
 					tabBarVisible : false,
-
+					tabBarIcon : ()=>{return <Icon name="user" size={25} color={"#FFFFFF"} style={{backgroundColor: colors.dark, borderRadius: 35, paddingHorizontal: 10, paddingVertical: 10, opacity:0.7}}></Icon>
+					}
 				  }}
 			/>
 			<Tab.Screen 
@@ -43,8 +42,8 @@ const appBottomTabs = ()=>{
 				component={homeRoute} 
 				options={{
 					tabBarLabel: 'Home',
+					tabBarIcon : ({focused})=>{return <Icon name="maximize" size={25} color={"#FFFFFF"} style={{backgroundColor: colors.blue, borderRadius: 35, paddingHorizontal: 10, paddingVertical: 10, }}></Icon>}
 				}}
-				
 			/>
 			<Tab.Screen 
 				name="Filters" 
@@ -52,6 +51,7 @@ const appBottomTabs = ()=>{
 				options={{
 					tabBarLabel: 'Filtros',
 					tabBarVisible : false,
+					tabBarIcon : ()=>{return <Icon name="filter" size={25} color={"#FFFFFF"} style={{backgroundColor: colors.dark, borderRadius: 35, paddingHorizontal: 10, paddingVertical: 10, opacity:0.7}}></Icon>}
 				  }} 
 			/>
 		</Tab.Navigator>

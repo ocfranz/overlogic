@@ -2,10 +2,9 @@ import React, { Component, useState } from "react";
 import { Alert, Modal, StyleSheet, Text, TouchableHighlight, View } from "react-native";
 import styles from './styles';
 
-const SimpleModal = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+const SimpleModal = ({modalVisible}) => {
   return (
-    <View style={styles.centeredView}>
+   
         <Modal
         animationType="slide"
         transparent={true}
@@ -21,7 +20,6 @@ const SimpleModal = () => {
             <TouchableHighlight
               style={{ ...styles.openButton, backgroundColor: "#2196F3" }}
               onPress={() => {
-                setModalVisible(!modalVisible);
               }}
             >
               <Text style={styles.textStyle}>Hide Modal</Text>
@@ -29,16 +27,7 @@ const SimpleModal = () => {
           </View>
         </View>
       </Modal>
-
-      <TouchableHighlight
-        style={styles.openButton}
-        onPress={() => {
-          setModalVisible(true);
-        }}
-      >
-        <Text style={styles.textStyle}>Show Modal</Text>
-      </TouchableHighlight>
-    </View>
+ 
   );
 };
 

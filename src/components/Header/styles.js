@@ -6,6 +6,14 @@ const styles = StyleSheet.create({
         alignItems : 'center',
         justifyContent : 'center',
         alignContent : 'center',
+       
+    },
+    header_wrapper_user : {
+        height : 50,
+        alignItems : 'center',
+        justifyContent : 'center',
+        alignContent : 'center',
+        backgroundColor: '#F6F9FF'
         
     },
     header_btn_wrapper :{
