@@ -71,7 +71,7 @@ const Home = ({navigation})=>{
 		let collectionWords = [];
 		event.textBlocks.map((item, inde)=>{
 			// Item.value, item.bound.size, item.bound.origin
-			if(processTextValue(item.value)){
+			//if(processTextValue(item.value)){
 				console.log(item.value)
 				collectionWords.push({'bounding': { 
 					'top': item.bounds.origin.y,
@@ -80,7 +80,7 @@ const Home = ({navigation})=>{
 					'height': item.bounds.size.height,
 					'value': item.value
 				 }})
-			}
+			//}
 		});
 
 		setCollectionText(collectionWords);

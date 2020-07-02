@@ -51,7 +51,7 @@ const appBottomTabs = ()=>{
 				options={{
 					tabBarLabel: 'Filtros',
 					tabBarVisible : false,
-					tabBarIcon : ()=>{return <Icon name="filter" size={25} color={"#FFFFFF"} style={{backgroundColor: colors.dark, borderRadius: 35, paddingHorizontal: 10, paddingVertical: 10, opacity:0.7}}></Icon>}
+					tabBarIcon : ()=>{return <Icon name="sliders" size={25} color={"#FFFFFF"} style={{backgroundColor: colors.dark, borderRadius: 35, paddingHorizontal: 10, paddingVertical: 10, opacity:0.7}}></Icon>}
 				  }} 
 			/>
 		</Tab.Navigator>
